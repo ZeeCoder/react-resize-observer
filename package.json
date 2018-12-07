@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "dist/bundle.cjs.js",
   "module": "dist/bundle.esm.js",
-  "repository": "git@github.com:ZeeCoder/use-resize-observer.git",
+  "repository": "git@github.com:ZeeCoder/react-resize-observer.git",
   "description": "A React component to use ResizeObserver.",
   "author": "Viktor Hubert <rpgmorpheus@gmail.com>",
   "license": "MIT",
