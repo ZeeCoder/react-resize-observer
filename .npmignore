@@ -2,3 +2,7 @@ src
 .babelrc
 rollup.config.js
 .editorconfig
+.idea
+yarn.lock
+yarn-error.log
+browserslist
