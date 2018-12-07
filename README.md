@@ -1,92 +1,37 @@
-import React, { Component } from "react";
-import ReactDOM from "react-dom";
-import PropTypes from "prop-types";
-import ResizeObserver from "resize-observer-polyfill";
-import WeakMap from "es6-weak-map";
+# @zeecoder/react-resize-observer
 
-const registry = new WeakMap();
+A React component to use ResizeObserver instances.
 
-const resizeObserver = new ResizeObserver(entries => {
-entries.forEach(entry => {
-const instance = registry.get(entry.target);
-if (!instance) {
-return;
-}
+## Install
 
-    instance.handleResize(entry.contentRect);
+```
+yarn add @zeecoder/react-resize-observer
+# or
+npm install --save @zeecoder/react-resize-observer
+```
 
-});
-});
+## Usage
 
-export default class ResizeObserverComponent extends Component {
-constructor(props) {
-super(props);
+```js
+const App = () => (
+  <ResizeObserver>
+    {size => (
+      <div>
+        My size is {size.width}x{size.height}
+      </div>
+    )}
+  </ResizeObserver>
+);
+```
 
-    this.state = { size: null };
+## Notes
 
-    this.lastRegisteredElement = null;
+- The children prop must be a function, through which the size changes are
+  communicated
+- If the optional `element` prop is given, the the component will observe the
+  size changes of that given element, instead of looking for the root DOM node
+  inside the component. (This avoids calling `ReactDOM.findDOMNode(this)`.)
 
-}
+## License
 
-componentDidMount() {
-const element = ReactDOM.findDOMNode(this);
-
-    if (element) {
-      registry.set(element, this);
-      resizeObserver.observe(element);
-      this.lastRegisteredElement = element;
-    }
-
-}
-
-handleResize(size) {
-this.setState({ size });
-}
-
-componentWillUnmount() {
-if (this.lastRegisteredElement) {
-registry.delete(this.lastRegisteredElement);
-resizeObserver.unobserve(this.lastRegisteredElement);
-}
-}
-
-componentDidUpdate() {
-const element = ReactDOM.findDOMNode(this);
-if (this.lastRegisteredElement === element) {
-return;
-}
-
-    if (this.lastRegisteredElement !== null) {
-      registry.delete(this.lastRegisteredElement);
-      resizeObserver.unobserve(this.lastRegisteredElement);
-      this.lastRegisteredElement = null;
-    }
-
-    if (element) {
-      registry.set(element, this);
-      resizeObserver.observe(element);
-      this.lastRegisteredElement = element;
-    }
-
-}
-
-render() {
-if (this.props.children) {
-return this.props.children(this.state.size);
-}
-
-    return this.props.render(this.state.size);
-
-}
-}
-
-ResizeObserverComponent.defaultProps = {
-render: size => (
-<div>My size is: {size ? `${size.width}x${size.height}` : "?"}</div>
-)
-};
-
-ResizeObserverComponent.propTypes = {
-render: PropTypes.func,
-children: PropTypes.func
-};
+MIT
