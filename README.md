@@ -34,6 +34,10 @@ const App = () => (
 - Uses [resize-observer-polyfill](https://github.com/que-etc/resize-observer-polyfill)
   internally, which falls back to the native ResizeObserver, if available
 
+## Related
+
+- [use-resize-observer](https://github.com/ZeeCoder/use-resize-observer)
+
 ## License
 
 MIT
