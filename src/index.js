@@ -14,8 +14,7 @@ class ResizeObserverComponent extends Component {
   }
 
   observeIfNeeded() {
-    // todo handle custom refs through props
-    const element = ReactDOM.findDOMNode(this);
+    const element = this.props.element || ReactDOM.findDOMNode(this);
 
     if (element && this.element !== element) {
       // clean up after a previous element
@@ -77,7 +76,8 @@ class ResizeObserverComponent extends Component {
 }
 
 ResizeObserverComponent.propTypes = {
-  children: PropTypes.func.isRequired
+  children: PropTypes.func.isRequired,
+  element: PropTypes.object
 };
 
 export default ResizeObserverComponent;
