@@ -31,6 +31,8 @@ const App = () => (
 - If the optional `element` prop is given, the the component will observe the
   size changes of that given element, instead of looking for the root DOM node
   inside the component. (This avoids calling `ReactDOM.findDOMNode(this)`.)
+- Uses [resize-observer-polyfill](https://github.com/que-etc/resize-observer-polyfill)
+  internally, which falls back to the native ResizeObserver, if available
 
 ## License
 
