@@ -8,8 +8,8 @@ class ResizeObserverComponent extends Component {
     super(props);
 
     this.state = {
-      width: 0,
-      height: 0
+      width: 1,
+      height: 1
     };
   }
 

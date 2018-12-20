@@ -6,3 +6,7 @@ rollup.config.js
 yarn.lock
 yarn-error.log
 browserslist
+karma.conf.js
+.cache
+.travis.yml
+tests
