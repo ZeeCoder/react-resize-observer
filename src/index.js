@@ -62,8 +62,8 @@ class ResizeObserverComponent extends Component {
   }
 
   componentWillUnmount() {
-    if (this.element) {
-      this.unobserve(this.element);
+    if (this.ref.current) {
+      this.unobserve(this.ref.current);
     }
   }
 
