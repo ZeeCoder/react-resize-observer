@@ -11,10 +11,12 @@ class ResizeObserverComponent extends Component {
       width: 1,
       height: 1
     };
+
+    this.ref = React.createRef();
   }
 
   observeIfNeeded() {
-    const element = this.props.element || ReactDOM.findDOMNode(this);
+    const element = this.ref.current;
 
     if (element && this.element !== element) {
       // clean up after a previous element
@@ -66,18 +68,12 @@ class ResizeObserverComponent extends Component {
   }
 
   render() {
-    const size = {
-      width: this.state.width,
-      height: this.state.height
-    };
-
-    return this.props.children(size);
+    return this.props.children(this.ref, this.state.width, this.state.height);
   }
 }
 
 ResizeObserverComponent.propTypes = {
-  children: PropTypes.func.isRequired,
-  element: PropTypes.object
+  children: PropTypes.func.isRequired
 };
 
 export default ResizeObserverComponent;

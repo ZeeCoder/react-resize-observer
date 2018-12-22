@@ -8,33 +8,11 @@ import delay from "delay";
 // works while it might actually not, if you use the lib without babel-polyfill.
 import "babel-regenerator-runtime";
 
-// const Observed = () => (
-//   <ResizeObserver>
-//     {(ref, width, height) => (
-//       <div
-//         ref={ref}
-//         id="observed"
-//         style={{
-//           position: "absolute",
-//           left: 0,
-//           top: 0,
-//           width: "100%",
-//           height: "100%",
-//           background: "grey",
-//           color: "white",
-//           fontWeight: "bold"
-//         }}
-//       >
-//         {width}x{height}
-//       </div>
-//     )}
-//   </ResizeObserver>
-// );
-
 const Observed = () => (
   <ResizeObserver>
-    {({ width, height }) => (
+    {(ref, width, height) => (
       <div
+        ref={ref}
         id="observed"
         style={{
           position: "absolute",
@@ -66,8 +44,6 @@ beforeAll(() => {
   global.observed = document.querySelector("#observed");
 });
 
-// todo make sure parcel transpiles down to IE10 (example: async and "Set" doesn't work properly)
-// todo run in sauce labs with multiple browsers
 it("should render with 1x1 initially, before the ResizeObserver is triggered", async () => {
   expect(observed.textContent).toBe("1x1");
 });
