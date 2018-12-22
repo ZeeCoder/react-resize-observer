@@ -34,7 +34,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",
-    "@babel/preset-env": "^7.1.0",
+    "@babel/preset-env": "^7.2.3",
     "babel-regenerator-runtime": "^6.5.0",
     "delay": "^4.1.0",
     "husky": "^1.1.2",
