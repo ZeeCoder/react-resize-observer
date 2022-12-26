@@ -1,42 +1,18 @@
 # @zeecoder/react-resize-observer
 
-A React component that allows you to use a ResizeObserver to measure an element's size.
+This package is now **officially deprecated**.  
+Use the [use-resize-observer](https://github.com/ZeeCoder/use-resize-observer) hook instead.
 
-[![npm version](https://badge.fury.io/js/%40zeecoder%2Freact-resize-observer.svg)](https://npmjs.com/package/@zeecoder/react-resize-observer)
-[![build](https://travis-ci.org/ZeeCoder/react-resize-observer.svg?branch=master)](https://travis-ci.org/ZeeCoder/react-resize-observer)
+If you want the old API, then create a react component, like so:
+```tsx
+import useResizeObserver from "use-resize-observer";
 
-## Install
+export default function({ children }) {
+  const { ref, width, height } = useResizeObserver();
+
+  return children(ref, width, height);
+}
 
 ```
-yarn add @zeecoder/react-resize-observer
-# or
-npm install --save @zeecoder/react-resize-observer
-```
 
-## Usage
-
-```js
-const App = () => (
-  <ResizeObserver>
-    {(ref, width, height) => (
-      <div ref={ref}>
-        My size is {width}x{height}
-      </div>
-    )}
-  </ResizeObserver>
-);
-```
-
-## Notes
-
-- Uses [resize-observer-polyfill](https://github.com/que-etc/resize-observer-polyfill)
-  internally, which falls back to the native ResizeObserver, if available.
-
-## Related
-
-- [use-resize-observer](https://github.com/ZeeCoder/use-resize-observer)
-- [@zeecoder/container-query](https://github.com/ZeeCoder/container-query)
-
-## License
-
-MIT
+Alternatively, see the last readme for v2 [here](https://github.com/ZeeCoder/react-resize-observer/tree/v2.0.0#zeecoderreact-resize-observer).
